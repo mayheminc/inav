@@ -16,18 +16,15 @@
  */
 
 #pragma once
+//  **************
+// ** MAYHEMF405 **
+// **********************************************************************************************************************************
+//        MAMBAF405 with TX4-RX4 bridged to break out unconnected TX4, disable sbus inverter, disable RX4, I2C_2 on UART3 pads
+//        TX4 on sbus pad, can be used for GHST or for SmartAudio, configured for GHST by default
+// **********************************************************************************************************************************
 
-//#ifdef MAMBAF405
-//#define TARGET_BOARD_IDENTIFIER "MBF4"
-//#define USBD_PRODUCT_STRING     "MAMBAF405"
-//#else
-//#ifdef MAYHEMF405
 #define TARGET_BOARD_IDENTIFIER "MIF4"
 #define USBD_PRODUCT_STRING     "MAYHEMF405"
-//#else
-//#define TARGET_BOARD_IDENTIFIER "FYF4"
-//#define USBD_PRODUCT_STRING     "FuryF4"
-//#endif
 
 #define LED0                    PB5
 #define LED1                    PB4
@@ -86,7 +83,7 @@
 #define UART1_RX_PIN            PA10
 #define UART1_TX_PIN            PA9
 
-//UART3 is shared with I2C_2 for mag/baro
+//UART3 is shared with I2C_2 for mag/baro MG
 
 //#define USE_UART3
 //#define UART3_RX_PIN            PB11
@@ -103,7 +100,7 @@
 #define UART4_RX_PIN            NONE
 
 
-// PPM is UNUSED  MG
+// PPM / SOFTSERIAL_2 is UNUSED  MG
 
 //#define USE_SOFTSERIAL1
 //#define SOFTSERIAL_1_RX_PIN      PA1
@@ -113,9 +110,11 @@
 //#define SOFTSERIAL_2_RX_PIN      PA2
 //#define SOFTSERIAL_2_TX_PIN      PA2
 
-#define SERIAL_PORT_COUNT       5
+//#define SERIAL_PORT_COUNT       5
 
-//inverter disabled for TX4/RX4 bridged access, no SBUS
+#define SERIAL_PORT_COUNT       4
+
+//inverter disabled for TX4/RX4 bridged access MG
 
 //#ifdef MAMBAF405
 //#   define USE_UART_INVERTER
@@ -128,22 +127,21 @@
 #define SERIALRX_UART           SERIAL_PORT_USART4
 
 
-// Nothing on I2C1, not broken out
-//#ifdef FUR
+// Nothing on I2C1, not broken out MG
+
 //#define USE_I2C
 //#define USE_I2C_DEVICE_1
 //#define I2C1_SCL                PB6
 //#define I2C1_SDA                PB7
 //#define DEFAULT_I2C_BUS         BUS_I2C1
 
-//  I2C2 Shares UART3
-//#ifdef MAYHEMF405
+//  I2C2 Shares UART3 pads MG
+
 #define USE_I2C
 #define USE_I2C_DEVICE_2
 #define I2C2_SCL             PB10
 #define I2C2_SDA             PB11
 #define DEFAULT_I2C_BUS      BUS_I2C2
-//#endif
 
 #define USE_BARO
 #define BARO_I2C_BUS                DEFAULT_I2C_BUS
@@ -157,7 +155,7 @@
 
 #define USE_RANGEFINDER
 #define USE_RANGEFINDER_MSP
-#define RANGEFINDER_I2C_BUS     DEFAULT_I2C_BUS
+#define RANGEFINDER_I2C_BUS         DEFAULT_I2C_BUS
 
 #define PITOT_I2C_BUS               DEFAULT_I2C_BUS
 
